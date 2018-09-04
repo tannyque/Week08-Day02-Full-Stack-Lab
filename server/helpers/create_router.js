@@ -47,6 +47,19 @@ const createRouter = function (collection) {
       });
   });
 
+  // TODO: Write post route
+  router.post('/', (req, res) => {
+    const newData = req.body;
+    collection
+    .insertOne(newData)
+    .then(() => {
+      collection
+      .find()
+      .toArray()
+      .then((docs) => res.json(docs));
+    });
+  });
+
   return router;
 
 };
